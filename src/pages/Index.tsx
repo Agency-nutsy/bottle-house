@@ -5,16 +5,16 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 
 // You will need to update these image imports with your actual assets
-import heroSlide1 from "@/assets/hero-slide-1.jpg";
-import heroSlide2 from "@/assets/hero-slide-2.png";
-import heroSlide3 from "@/assets/hero-slide-3.png";
-import heroSlide4 from "@/assets/hero-slide-4.png";
-import pizzaImg from "@/assets/momos.jpg"; // Placeholder
-import springRollImg from "@/assets/thukpa.jpg"; // Placeholder
-import platterImg from "@/assets/tingmo.jpg"; // Placeholder
-import drinkImg from "@/assets/butter-tea.jpg"; // Placeholder
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
+import heroSlide1 from "@/assets/hero 1.webp";
+import heroSlide2 from "@/assets/hero 2.webp";
+import heroSlide3 from "@/assets/hero 3.webp";
+import heroSlide4 from "@/assets/hero 4.webp";
+import pizzaImg from "@/assets/pizza.jpg"; // Placeholder
+import springRollImg from "@/assets/rolls.jpg"; // Placeholder
+import platterImg from "@/assets/platter.jpg"; // Placeholder
+import drinkImg from "@/assets/mocktail.webp"; // Placeholder
+import gallery1 from "@/assets/home 1.webp";
+import gallery2 from "@/assets/home 2.webp";
 
 // NAP Data fetched for Bottle House Cafe
 const PHONE = "+919911204431"; 
