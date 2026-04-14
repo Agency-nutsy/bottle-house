@@ -37,52 +37,91 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   }, [onComplete]);
 
   return (
-    <motion.div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-      style={{
-        background: "linear-gradient(135deg, hsl(5, 50%, 12%) 0%, hsl(8, 65%, 22%) 40%, hsl(35, 60%, 25%) 100%)",
-      }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    >
-      <motion.h1
-        className="font-display text-5xl sm:text-6xl font-bold mb-8 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="text-[hsl(35,70%,65%)]">Yo</span>
-        <span className="text-[hsl(0,0%,95%)]"> Tibet</span>
-      </motion.h1>
-
+    <AnimatePresence>
       <motion.div
-        className="w-56 sm:w-64 h-1.5 rounded-full overflow-hidden"
-        style={{ background: "hsla(0,0%,100%,0.15)" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black overflow-hidden"
+        // Sleek "drop down and fade" exit animation
+        exit={{ opacity: 0, y: 50, filter: "blur(12px)" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.div
-          className="h-full rounded-full"
-          style={{
-            background: "linear-gradient(90deg, hsl(35,70%,55%), hsl(8,65%,50%))",
-          }}
-          initial={{ width: "0%" }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        />
-      </motion.div>
+        {/* Deep Bottle Green Ambient Glow */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.div
+            className="w-[500px] h-[500px] rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(0,0,0,0) 70%)",
+            }}
+            animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
 
-      <motion.p
-        className="mt-4 text-sm tracking-widest uppercase"
-        style={{ color: "hsla(0,0%,100%,0.4)" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        Authentic Tibetan Kitchen
-      </motion.p>
-    </motion.div>
+        {/* Glassmorphism Container */}
+        <motion.div 
+          className="relative z-10 flex flex-col items-center p-12 rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-md"
+          style={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {/* Main Title Animation */}
+          <motion.h1
+            className="font-display text-5xl sm:text-7xl font-black mb-2 text-center tracking-tight uppercase"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="text-zinc-100">Bottle</span>
+            <span 
+              className="text-transparent bg-clip-text ml-3"
+              style={{ 
+                backgroundImage: "linear-gradient(to right, #10b981, #34d399)",
+                filter: "drop-shadow(0px 0px 15px rgba(16, 185, 129, 0.5))"
+              }}
+            >
+              House
+            </span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            className="mb-10 text-[10px] sm:text-xs tracking-[0.5em] text-[#34d399] font-semibold uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Sip • Vibe • Satya Niketan
+          </motion.p>
+
+          {/* "Liquid" Progress Bar */}
+          <div className="w-56 sm:w-72 h-2 rounded-full bg-black/50 overflow-hidden relative border border-white/10 shadow-inner">
+            <motion.div
+              className="h-full rounded-full relative"
+              style={{
+                background: "linear-gradient(90deg, #047857, #10b981, #34d399)",
+                boxShadow: "0 0 12px rgba(16, 185, 129, 0.8)"
+              }}
+              initial={{ width: "0%" }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              {/* Subtle shine effect on the progress bar to make it look like liquid/glass */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/40" />
+            </motion.div>
+          </div>
+
+          {/* Percentage Counter */}
+          <motion.div
+            className="mt-5 text-zinc-400 text-sm font-mono tracking-widest font-light"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            {progress}%
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
